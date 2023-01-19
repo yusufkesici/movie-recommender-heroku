@@ -1,0 +1,175 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Movie Recommener</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+
+
+<div class="kapsayici">
+    <div class="ust-bolum-sol">
+       
+
+
+    </div>
+    <div class="ust-bolum-orta">
+        <h1>Popular Movies</h1>
+    </div>
+    <div class="ust-bolum-sag">
+       
+    </div>
+    <div class="bos-alan-sag">
+
+    </div>
+  
+    <div class="bos-alan">
+            <div class="slider">
+                <div class="slide-track">
+                                
+                   {% for item in img_title  %}
+                       <a class="slide" >
+                       <img src="{{ item[0] }}" onclick="submitForm(this.id)" id="{{item[1]}}">
+
+                       <form id="image_form" action="/process_image" method="post">
+                       <input type="hidden" id="image_id" name="image_id" value="">
+                       </form> </a>
+                   {% endfor %}
+
+              
+              </div>
+        
+    </div>
+    <div class="bos-alan-sag">
+        
+    </div>
+    
+    <div class="icerik-alan-sol">
+       
+    </div>
+
+    <div class="icerik-alan-orta">
+
+        <div class="arama-container">
+
+            <div class="arama">
+                <form action="{{url_for('Movie_Name')}}" method="POST" id="form_id">
+                    <p class="p-arama" >Movie Name:</p>
+                <input class="movie-input" type="text" id="input_id" name="input_id" value="{{selected_movie}}">
+                <button class="arama-button" type="submit">Recommend</button>
+    
+                </form>
+
+            </div>
+             <div class="rec-arama">
+                <h1>Recommendations</h1>
+
+    
+                </div> 
+            
+        </div>
+        
+        
+
+{% for item in MovieInfo  %}
+<div class="kutu sekiz">
+    
+        <img src="{{ item['MoviePoster'] }}", class="img-recommended">
+
+    <div class="movie-texts">
+
+        <table>
+            
+            <tr>
+                <td><h4>Title:</h4></td> 
+
+               <td><h3>{{item["original_title"]}}</h3></td> 
+
+            </tr>
+
+
+        <tr>
+            <td> <h5>Overview:</h5> </td>
+            <td><h5>{{item["overview"][0:300]}}</h5></td>
+
+        </tr>
+
+        <tr>
+            <td> <h5>Director:</h5> </td>
+            <td> <h5>{{item["director"]}}</h5> </td>
+        </tr>
+        <tr>
+            <td> <h5>Genres:</h5> </td>
+            <td> <h5>{{item["genres"]}}</h5> </td>
+        </tr>
+        <tr>
+            <td> <h5>Vote Average:</h5> </td>
+            <td> <h5>{{item["vote_average"]}}</h5> </td>
+        </tr>
+
+        </table>
+
+        
+    </div>
+
+</div>
+
+        
+{% endfor %}
+
+
+
+
+
+
+      
+    </div>
+
+    <div class="icerik-alan-sag">
+        
+    </div>
+
+    <div class="alt-alan">
+        
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+  function submitForm(image_id) {
+    document.getElementById('image_id').value = image_id;
+    document.getElementById('image_form').submit();
+  }
+
+  window.onscroll = function() {
+    if (document.body.scrollTop > 1450 || document.documentElement.scrollTop > 1450) {
+        window.scrollTo(0, 1450);
+    }
+};
+</script>
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>
+
+

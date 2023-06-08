@@ -2,6 +2,7 @@
 
 # Docker
 docker pull yusufkesici/movie-recommender
+
 docker container run -d -p 5000:3000 yusufkesici/movie-recommender
 
 web link: https://heroku-movie-recommender.herokuapp.com/
